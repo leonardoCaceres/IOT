@@ -80,9 +80,9 @@ while True:
     elif pressed_key.name == "s" or pressed_key.name == "down":
         backwards(steps, ver)
     elif pressed_key.name == "a" or pressed_key.name == "left":
-        forward(steps, hor)
-    elif pressed_key.name == "d" or pressed_key.name == "right":
         backwards(steps, hor)
+    elif pressed_key.name == "d" or pressed_key.name == "right":
+        forward(steps, hor)
 
     if pressed_key.name == "q":
         break
