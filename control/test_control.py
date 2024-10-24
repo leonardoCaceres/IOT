@@ -57,17 +57,17 @@ def set_step(w1, w2, w3, w4, pinout):
     GPIO.output(pinout[3], w4)
 
 
-def forward(steps):
+def forward(steps, pins):
     for i in range(steps):
         for j in range(StepCount):
-            set_step(Seq[j][0], Seq[j][1], Seq[j][2], Seq[j][3])
+            set_step(Seq[j][0], Seq[j][1], Seq[j][2], Seq[j][3], pins)
             time.sleep(delay)
 
 
-def backwards(steps):
+def backwards(steps, pins):
     for i in range(steps):
         for j in reversed(range(StepCount)):
-            set_step(Seq[j][0], Seq[j][1], Seq[j][2], Seq[j][3])
+            set_step(Seq[j][0], Seq[j][1], Seq[j][2], Seq[j][3], pins)
             time.sleep(delay)
 
 
