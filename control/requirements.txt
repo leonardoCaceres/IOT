@@ -1,3 +1,11 @@
 Requirements:
 pip install RPi.GPIO
 pip install keyboard
+
+
+To run:
+use:
+
+sudo su
+
+source myenv/bin/activate
