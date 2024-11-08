@@ -39,7 +39,7 @@ while True:
 			else:
 				forward(steps, hor)
 
-		if abs(cy - center_y) > 30:
+		if abs(cy - center_y) < 30:
 			###ON THE TOP OF THE CENTER
 			if cy > center_y:
 				backwards(steps, ver)
