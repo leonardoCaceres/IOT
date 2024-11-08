@@ -1,5 +1,5 @@
 import cv2
-import controll_start
+from controll_start import *
 import math
 
 cam = cv2.VideoCapture(0)
@@ -33,7 +33,7 @@ while True:
 			
 		if abs(cx - center_x) > 30:
 			###ON THE RIGHT OF THE CENTER
-			if cx > center_x:
+			if cx < center_x:
 				backwards(steps, hor)
 			###ON THE LEFT OF THE CENTER
 			else:
@@ -41,7 +41,7 @@ while True:
 
 		if abs(cy - center_y) > 30:
 			###ON THE TOP OF THE CENTER
-			if cy < center_y:
+			if cy > center_y:
 				backwards(steps, ver)
 			###ON THE BELOW OF THE CENTER
 			else:
