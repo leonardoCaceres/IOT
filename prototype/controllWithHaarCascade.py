@@ -2,7 +2,7 @@ import cv2
 from controll_start import *
 import math
 
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(1)
 
 detec = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
