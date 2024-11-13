@@ -29,15 +29,15 @@ cy = 0
 while True:
     ret, frame = cam.read()
 
-    if odd:
-        cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # if odd:
+    cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        face = detec.detectMultiScale(cinza, 1.3, 3)
-        if face is not ():
-            for x, y, larg, alt in face:  # Desenhar o retângulo
-                cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
-                cx, cy = get_middle(x, y, x + larg, y + alt)
-                print(cx, cy)
+    face = detec.detectMultiScale(cinza, 1.3, 3)
+    if face is not ():
+        for x, y, larg, alt in face:  # Desenhar o retângulo
+            cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
+            cx, cy = get_middle(x, y, x + larg, y + alt)
+            print(cx, cy)
 
         if abs(cx - center_x) > 40:
             ###ON THE RIGHT OF THE CENTER
@@ -55,10 +55,10 @@ while True:
             else:
                 forward(steps, ver)
 
-        cv2.imshow("Camera", frame)
-        if cv2.waitKey(1) == ord("q"):
-            break
-    odd = not odd
+    cv2.imshow("Camera", frame)
+    if cv2.waitKey(1) == ord("q"):
+        break
+    # odd = not odd
 
 GPIO.cleanup()
 cam.release()
