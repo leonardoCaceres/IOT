@@ -24,8 +24,8 @@ def get_middle(x, y, x1, y1):
     return int((x + x1) / 2), int((y + y1) / 2)
 
 
-cx = 0
-cy = 0
+face_x = 0
+face_y = 0
 while True:
     ret, frame = cam.read()
 
@@ -33,23 +33,23 @@ while True:
     cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     face = detec.detectMultiScale(cinza, 1.3, 3)
-    if face is not ():
+    if face != ():
         for x, y, larg, alt in face:  # Desenhar o retângulo
             cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
-            cx, cy = get_middle(x, y, x + larg, y + alt)
-            print(cx, cy)
+            face_x, face_y = get_middle(x, y, x + larg, y + alt)
+            print(face_x, face_y)
 
-        if abs(cx - center_x) > 40:
+        if abs(face_x - center_x) > 40:
             ###ON THE RIGHT OF THE CENTER
-            if cx < center_x:
+            if face_x < center_x:
                 backwards(steps, hor)
             ###ON THE LEFT OF THE CENTER
             else:
                 forward(steps, hor)
 
-        if abs(cy - center_y) < 40:
+        if abs(face_y - center_y) < 40:
             ###ON THE TOP OF THE CENTER
-            if cy > center_y:
+            if face_y > center_y:
                 backwards(steps, ver)
             ###ON THE BELOW OF THE CENTER
             else:
