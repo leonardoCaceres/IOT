@@ -2,6 +2,7 @@ import cv2
 from controll_start import *
 import math
 import argparse
+import numpy as np
 
 parser = argparse.ArgumentParser(description="Short sample app")
 parser.add_argument("--cam-index", action="store", dest="cam_index", default=0)
@@ -33,7 +34,7 @@ while True:
     cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     face = detec.detectMultiScale(cinza, 1.3, 3)
-    if face:
+    if isinstance(face, np.ndarray):
         for x, y, larg, alt in face:  # Desenhar o retângulo
             cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
             face_x, face_y = get_middle(x, y, x + larg, y + alt)
