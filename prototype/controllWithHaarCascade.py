@@ -29,6 +29,7 @@ while True:
 
         face = detec.detectMultiScale(cinza, 1.3, 3)
         if face is not ():
+            print(x, y)
             for x, y, larg, alt in face:  # Desenhar o retângulo
                 cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
                 cx, cy = get_middle(x, y, x + larg, y + alt)
