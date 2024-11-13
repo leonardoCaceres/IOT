@@ -38,14 +38,16 @@ while True:
         for x, y, larg, alt in face:  # Desenhar o retângulo
             cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
             face_x, face_y = get_middle(x, y, x + larg, y + alt)
-            print(face_x, face_y)
+            # print(face_x, face_y)
 
         if abs(face_x - center_x) > 40:
             ###ON THE RIGHT OF THE CENTER
             if face_x < center_x:
+                print("direita")
                 backwards(steps, hor)
             ###ON THE LEFT OF THE CENTER
             else:
+                print("esquerda")
                 forward(steps, hor)
 
         if abs(face_y - center_y) < 40:
