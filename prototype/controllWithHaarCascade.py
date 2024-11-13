@@ -33,7 +33,7 @@ while True:
     cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     face = detec.detectMultiScale(cinza, 1.3, 3)
-    if face != ():
+    if face:
         for x, y, larg, alt in face:  # Desenhar o retângulo
             cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
             face_x, face_y = get_middle(x, y, x + larg, y + alt)
