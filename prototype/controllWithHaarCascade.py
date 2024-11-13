@@ -1,8 +1,13 @@
 import cv2
 from controll_start import *
 import math
+import argparse
 
-cam = cv2.VideoCapture(1)
+parser = argparse.ArgumentParser(description="Short sample app")
+parser.add_argument("--cam-index", action="store", dest="cam_index", default=0)
+args = parser.parse_args()
+
+cam = cv2.VideoCapture(args.cam_index)
 
 detec = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
