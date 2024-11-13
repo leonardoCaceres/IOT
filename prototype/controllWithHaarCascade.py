@@ -51,10 +51,10 @@ while True:
         if abs(face_y - center_y) < 40:
             ###ON THE TOP OF THE CENTER
             if face_y > center_y:
-                backwards(steps, ver)
+                forward(steps, ver)
             ###ON THE BELOW OF THE CENTER
             else:
-                forward(steps, ver)
+                backwards(steps, ver)
 
     cv2.imshow("Camera", frame)
     if cv2.waitKey(1) == ord("q"):
