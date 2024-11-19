@@ -8,13 +8,13 @@ def subscribe(client: mqtt_client):
         command = msg.payload.decode("utf-8")
         print(f"received {command}")
         direction = command.split(" ")[0]
-        if "left" in direction.contains():
+        if "left" in direction:
             backwards(steps, hor)
-        elif "right" in direction.contains():
+        elif "right" in direction:
             forward(steps, hor)
-        elif "up" in direction.contains():
+        elif "up" in direction:
             forward(steps, ver)
-        elif "down" in direction.contains():
+        elif "down" in direction:
             backwards(steps, ver)
 
         if "neutral" not in direction:
