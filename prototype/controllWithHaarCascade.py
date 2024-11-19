@@ -10,7 +10,7 @@ client = connect_mqtt()
 subscribe(client)
 client.loop_start()
 
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(1)
 
 detec = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
@@ -19,8 +19,6 @@ frame_height = int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 center_x = frame_width / 2
 center_y = frame_height / 2
-
-# odd = True
 
 
 def get_middle(x, y, x1, y1):
@@ -32,7 +30,6 @@ face_y = 0
 _await = False
 while True:
     ret, frame = cam.read()
-
     cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     face = detec.detectMultiScale(cinza, 1.3, 3)
