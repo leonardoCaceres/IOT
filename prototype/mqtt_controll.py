@@ -1,6 +1,6 @@
 from controll_start import *
 import paho.mqtt.publish as publish
-from prototype.mqtt.start_mqtt import *
+from mqtt.start_mqtt import *
 
 
 def subscribe(client: mqtt_client):
