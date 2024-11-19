@@ -17,7 +17,7 @@ def subscribe(client: mqtt_client):
         elif "down" in direction:
             backwards(steps, ver)
 
-        if "neutral" not in direction:
+        if "neutral" not in direction and "done" not in direction:
             host = "10.7.129.102"
             publish.single(topic="/control_camera", payload="done", hostname=host)
 
