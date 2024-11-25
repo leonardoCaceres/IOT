@@ -3,7 +3,7 @@ import paho.mqtt.publish as publish
 from mqtt.start_mqtt import *
 
 
-def subscribe(client: mqtt_client):
+def subscribe(client):
     def on_message(client, userdata, msg):
         command = msg.payload.decode("utf-8")
         print(f"received {command}")
@@ -19,9 +19,9 @@ def subscribe(client: mqtt_client):
 
         if "neutral" not in direction and "done" not in direction:
             host = "10.7.129.102"
-            publish.single(topic="/control_camera", payload="done", hostname=host)
+            publish.single(topic="/rasp", payload="done", hostname=host)
 
-    client.subscribe(topic)
+    client.subscribe("/pc")
     client.on_message = on_message
 
 

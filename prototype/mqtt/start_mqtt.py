@@ -4,7 +4,6 @@ from paho.mqtt import client as mqtt_client
 # broker = 'localhost'
 broker = "10.7.129.102"
 port = 1883
-topic = "/control_camera"
 # Generate a Client ID with the subscribe prefix.
 client_id = f"subscribe-{random.randint(0, 100)}"
 
@@ -23,14 +22,3 @@ def connect_mqtt() -> mqtt_client:
     client.on_connect = on_connect
     client.connect(broker, port)
     return client
-
-
-def subscribe(client: mqtt_client):
-    def on_message(client, userdata, msg):
-        global _await
-        if msg.payload.decode("utf-8") == "done":
-            _await = True
-        print(f"Received `{msg.payload.decode()}` from `{msg.topic}` topic")
-
-    client.subscribe(topic)
-    client.on_message = on_message
