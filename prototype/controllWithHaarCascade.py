@@ -112,6 +112,9 @@ client.loop_start()
 #     cv2.imshow("Camera", frame)
 #     if cv2.waitKey(1) == ord("q"):
 #         break
-
-cam.release()
-cv2.destroyAllWindows()
+try:
+    while True:
+        pass
+except KeyboardInterrupt:
+    cam.release()
+    cv2.destroyAllWindows()

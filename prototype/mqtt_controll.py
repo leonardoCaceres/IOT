@@ -28,6 +28,8 @@ def subscribe(client):
 client = connect_mqtt()
 subscribe(client)
 client.loop_start()
+host = "10.7.129.102"
+publish.single(topic="/rasp", payload="start", hostname=host)
 
 try:
     while True:
