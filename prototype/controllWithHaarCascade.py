@@ -11,7 +11,7 @@ client = connect_mqtt()
 _await = False
 
 
-cam = cv2.VideoCapture(1)
+cam = cv2.VideoCapture(0)
 
 detec = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
@@ -42,28 +42,29 @@ def subscribe(client: mqtt_client):
             cinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
             face = detec.detectMultiScale(cinza, 1.3, 3)
-            for x, y, larg, alt in face:  # Desenhar o retângulo
-                cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
-                face_x, face_y = get_middle(x, y, x + larg, y + alt)
-                # print(face_x, face_y)
+            if isinstance(face, np.ndarray):
+                for x, y, larg, alt in face:  # Desenhar o retângulo
+                    cv2.rectangle(frame, (x, y), (x + larg, y + alt), (0, 255, 0), 3)
+                    face_x, face_y = get_middle(x, y, x + larg, y + alt)
+                    # print(face_x, face_y)
 
-            if abs(face_x - center_x) > 40:
-                ###ON THE RIGHT OF THE CENTER
-                if face_x > center_x:
-                    print("direita")
-                    msg += "right"
-                ###ON THE LEFT OF THE CENTER
-                else:
-                    print("esquerda")
-                    msg += "left"
+                if abs(face_x - center_x) > 40:
+                    ###ON THE RIGHT OF THE CENTER
+                    if face_x > center_x:
+                        print("direita")
+                        msg += "right"
+                    ###ON THE LEFT OF THE CENTER
+                    else:
+                        print("esquerda")
+                        msg += "left"
 
-            if abs(face_y - center_y) < 40:
-                ###ON THE TOP OF THE CENTER
-                if face_y > center_y:
-                    msg += "up"
-                ###ON THE BELOW OF THE CENTER
-                else:
-                    msg += "down"
+                if abs(face_y - center_y) < 40:
+                    ###ON THE TOP OF THE CENTER
+                    if face_y > center_y:
+                        msg += "up"
+                    ###ON THE BELOW OF THE CENTER
+                    else:
+                        msg += "down"
             if msg != "":
                 command = msg
                 mpc.send_message(msg, 0)
